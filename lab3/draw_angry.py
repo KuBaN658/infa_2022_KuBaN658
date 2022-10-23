@@ -14,10 +14,9 @@ rect(screen, grey, (0, 0, size*4, size*4))
 circle(screen, yellow, (size*2, size*2), size)
 circle(screen, black, (size*2, size*2), size, 2)
 rect(screen, black, (2*size - 0.5*size, 2*size + 0.5*size, size, size//5))
-x0 = 100; y0 = 100
-x1 = 200; y1 = 150
+polygon(screen, black, 250, )
 
-polygon(screen, black, [(x0, y0), (x1, y1), (abs(x0 - x1)/((x0 - x1)**2 + (y0 - y1)**2)**0.5*25, abs(x0 - x1)/((x0 - x1)**2 + (y0 - y1)**2)**0.5*25) ])
+
 
 
 pygame.display.update()
