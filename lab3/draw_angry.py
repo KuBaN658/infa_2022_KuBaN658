@@ -14,7 +14,10 @@ rect(screen, grey, (0, 0, size*4, size*4))
 circle(screen, yellow, (size*2, size*2), size)
 circle(screen, black, (size*2, size*2), size, 2)
 rect(screen, black, (2*size - 0.5*size, 2*size + 0.5*size, size, size//5))
-polygon(screen, black, 250, )
+def caunt_coords_polygon():
+
+
+#polygon(screen, black, [size, size])
 
 
 
