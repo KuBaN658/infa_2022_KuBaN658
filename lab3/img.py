@@ -6,7 +6,7 @@ WIDTH = 1900
 HEIGHT = 1000
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Класс Surface")
+pygame.display.set_caption("Image and transform")
 
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
