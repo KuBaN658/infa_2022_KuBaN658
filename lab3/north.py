@@ -30,28 +30,37 @@ pygame.draw.rect(screen, GREY, (0, 0, WIDTH, HEIGHT//2))
 def jurt(width_jurt, coords):
     height_jurt = width_jurt//2
     surf_jurt = pygame.Surface((width_jurt, height_jurt))
+
     surf_jurt.fill((0, 0, 1))
+    pygame.draw.circle(surf_jurt, GREY, (height_jurt, height_jurt*1.25), height_jurt)
     pygame.draw.circle(surf_jurt, BLACK, (height_jurt, height_jurt*1.25), height_jurt, 2)
     surf_jurt.set_colorkey((0, 0, 1))
+
     h = width_jurt//2//3.5
     h_rect = height_jurt*0.25
-    x =  height_jurt*0.0318
     y = height_jurt - 1
     w = width_jurt//5
+
     for i in range(3):
         cath = (height_jurt**2 - h_rect**2)**0.5
         x = height_jurt - cath
+
         pygame.draw.line(surf_jurt, BLACK, (x, y), (width_jurt - x, y))
+
         y -= h
         h_rect += h
         abcissa = x + width_jurt//30
-        while abcissa < cath*2.5:
-            if i > 0:
-                pygame.draw.line(surf_jurt, BLACK, (abcissa, y + 2*h), (abcissa, y + h))
+
+        while abcissa < cath*2 + x:
+            pygame.draw.line(surf_jurt, BLACK, (abcissa, y), (abcissa, y + h))
             abcissa += w
 
-
-
+    surf_jurt_upper = pygame.Surface((width_jurt, height_jurt))
+    surf_jurt_upper.fill(GREY)
+    pygame.draw.rect(surf_jurt_upper, (255, 255, 254), (0, height_jurt//2, width_jurt, height_jurt//2))
+    pygame.draw.circle(surf_jurt_upper, WHITE, (height_jurt, height_jurt * 1.25), height_jurt)
+    surf_jurt_upper.set_colorkey(WHITE)
+    surf_jurt.blit(surf_jurt_upper, (0, 0))
 
 
     return screen.blit(surf_jurt, coords)
