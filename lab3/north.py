@@ -62,15 +62,29 @@ def jurt(width_jurt, coords):
     surf_jurt_upper.set_colorkey(WHITE)
     surf_jurt.blit(surf_jurt_upper, (0, 0))
 
-
     return screen.blit(surf_jurt, coords)
+
+
+def draw_ellipse(width_ellipse, color):
+    surf_ellipse = pygame.Surface((width_ellipse, width_ellipse//2))
+    pygame.draw.ellipse(surf_ellipse, color, (width_ellipse//4, width_ellipse//4, width_ellipse//2, width_ellipse//8))
+    surf_ellipse.set_colorkey(BLACK)
+    return surf_ellipse
+
+
+def cat(width_cat, coords):
+    torso = draw_ellipse(width_cat, DARK_GREY)
+    return screen.blit(torso, coords)
+
+
+
 while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
 
     jurt(400, (50, 400))
-
+    cat(300, (100, 700))
     pygame.display.update()
 
     clock.tick(FPS)
