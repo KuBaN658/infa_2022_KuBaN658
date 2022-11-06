@@ -85,61 +85,94 @@ def chukchi(height, coords):
     surf_chukchi.blit(hand, (0, width//2.5))
     hand_left = pygame.transform.rotate(hand, 150)
     surf_chukchi.blit(hand_left, (width//1.7, width//2.9))
+    leg = draw_ellipse(width//6, width//3, BROWN)
+    surf_chukchi.blit(leg, (width//4, width*0.825))
+    surf_chukchi.blit(leg, (width//1.8, width*0.825))
+    foot = draw_ellipse(width//4, width//8, BROWN)
+    surf_chukchi.blit(foot, (width//6, height*0.7))
+    surf_chukchi.blit(foot, (width//1.8, height*0.7))
+    pygame.draw.line(surf_chukchi, (0, 0, 1), (width*0.03, 0), (width*0.08, height*0.7))
+    pygame.draw.line(surf_chukchi, (0, 0, 1), (width*0.37, width*0.15), (width*0.43, width*0.17))
+    pygame.draw.line(surf_chukchi, (0, 0, 1), (width*0.5, width*0.17), (width*0.56, width*0.15))
+    pi = 3.14
+    pygame.draw.arc(surf_chukchi, (0, 0, 1), (width*0.42, width*0.22, width*0.1, width*0.05), 0, pi)
+    pygame.draw.rect(surf_chukchi, DARK_BROWN, (width*0.1, width*0.88, width*0.76, width*0.1))
+    pygame.draw.rect(surf_chukchi, DARK_BROWN, (width*0.38, width*0.35, width*0.2, width*0.6))
 
     surf_chukchi.set_colorkey(BLACK)
     return screen.blit(surf_chukchi, coords)
 
-# def cat(width_cat, coords):
-#     torso = draw_ellipse(width_cat, width_cat//2, DARK_GREY)
-#     screen.blit(torso, coords)
-#     nail = draw_ellipse(width_cat, width_cat//3, DARK_GREY)
-#     nail = pygame.transform.rotate(nail, 45)
-#     screen.blit(nail, (coords[0] + width_cat//2.5, coords[1] - width_cat//2.6))
-#     leg = draw_ellipse(width_cat*0.7, width_cat*0.2, DARK_GREY)
-#     leg1 = pygame.transform.rotate(leg, -160)
-#     leg2 = pygame. transform.rotate(leg, -145)
-#     leg3 = pygame.transform.rotate(leg, -40)
-#     leg4 = pygame.transform.rotate(leg, -55)
-#     screen.blit(leg1, (width_cat*0.3, width_cat*2.5))
-#     screen.blit(leg2, (width_cat*0.8, width_cat*1.07))
-#     screen.blit(leg3, (width_cat*2.5, width_cat*1.04))
-#     screen.blit(leg4, (width_cat*2.5, width_cat*1.04))
-#     surf_fish = pygame.Surface((int(width_cat * 0.5), int(width_cat * 0.5)))
-#     surf_fish.fill(WHITE)
-#     surf_fin = pygame.Surface((width_cat*0.2, width_cat*0.2))
-#     surf_fin.fill(WHITE)
-#     pygame.draw.polygon(surf_fin, RED,
-#                         [[0, width_cat*0.14], [width_cat*0.07, width_cat*0.2], [width_cat*0.14, 0],
-#                          [width_cat*0.2, width_cat*0.07]])
-#     pygame.draw.polygon(surf_fin, BLACK,
-#                         [[0, width_cat * 0.14], [width_cat * 0.07, width_cat * 0.2], [width_cat * 0.14, 0],
-#                          [width_cat * 0.2, width_cat * 0.07]], 1)
-#     surf_fin = pygame.transform.rotate(surf_fin, 45)
-#     surf_fish.blit(surf_fin, (width_cat*0.075, width_cat*0.055))
-#     surf_torso_fish = pygame.Surface((int(width_cat*0.3), int(width_cat*0.3)))
-#     surf_torso_fish.fill(WHITE)
-#     pygame.draw.circle(surf_torso_fish, BLUE, (width_cat*0.15, -width_cat*0.255), width_cat*0.3)
-#     pygame.draw.circle(surf_torso_fish, BLACK, (width_cat * 0.15, -width_cat * 0.255), width_cat * 0.3, 1)
-#     surf_torso_fish.set_colorkey(WHITE)
-#
-#
-#     surf_torso_fish_up = pygame.transform.flip(surf_torso_fish, 0, 1)
-#     surf_fish.blit(surf_torso_fish,(width_cat*0.1, width_cat*0.2))
-#     surf_fish.blit(surf_torso_fish_up, (width_cat*0.1, -width_cat*0.1))
-#     surf_fish.set_colorkey(WHITE)
-#     pygame.draw.polygon(surf_fish, BLUE,
-#                         [[width_cat*0.4, width_cat*0.2], [width_cat*0.45, width_cat*0.25], [width_cat*0.45, width_cat*0.15]])
-#     pygame.draw.polygon(surf_fish, BLACK,
-#                         [[width_cat*0.4, width_cat*0.2], [width_cat * 0.45, width_cat*0.25],
-#                          [width_cat*0.45, width_cat*0.15]], 1)
-#     pygame.draw.circle(surf_fish, DARK_BLUE, (width_cat * 0.15, width_cat * 0.2), width_cat*0.015)
-#     surf_fish = pygame.transform.rotate(surf_fish, -45)
-#
-#     surf_head_cat = pygame.Surface((width_cat*0.3, width_cat*0.3))
-#     surf_fish.blit(surf_head_cat, (width_cat*0.1, width_cat*0.1))
-#     screen.blit(surf_fish, (coords[0] * 0.5, coords[1] * 0.98))
-#     return screen
 
+def draw_fish(width):
+    surf_fish = pygame.Surface((width*1.5, width*1.5))
+    surf_fin = pygame.Surface((width//2, width//2))
+    pygame.draw.polygon(surf_fin, RED, [[0, width//3], [width//2, width//6],
+                                        [width//3, 0], [width//6, width//2]])
+    pygame.draw.polygon(surf_fin, (0, 0, 1), [[0, width // 3], [width // 2, width // 6],
+                                        [width // 3, 0], [width // 6, width // 2]], 1)
+    surf_torso = pygame.Surface((width, width))
+    surf_torso.set_colorkey(BLACK)
+    pygame.draw.circle(surf_torso, BLUE, (width*0.4, -width*0.45), width*0.6)
+    pygame.draw.circle(surf_torso, (0, 0, 1), (width*0.4, -width*0.45), width*0.6, 1)
+    surf_torso_up = pygame.transform.flip(surf_torso, 0, 1)
+    torso = pygame.Surface((width, width))
+    torso.blit(surf_torso, (0, width*0.3))
+    torso.blit(surf_torso_up,(0, -width*0.7))
+    torso.set_colorkey(BLACK)
+    torso = pygame.transform.rotate(torso, -40)
+    pygame.draw.polygon(torso, BLUE, [[width, width*0.7], [width*1.2,
+                                            width*0.65], [width*1, width*0.9]])
+    pygame.draw.polygon(torso, (0, 0, 1), [[width, width*0.7], [width*1.2,
+                                            width*0.65], [width*1, width*0.9]], 1)
+
+    surf_fish.blit(surf_fin,(width*0.4, width//3))
+    surf_fish.blit(torso, (width*0, width*0.2))
+    surf_fish.set_colorkey(BLACK)
+    return surf_fish
+
+
+def cat(width, coords):
+    surf_cat = pygame.Surface((width, width/2))
+    pygame.draw.ellipse(surf_cat, DARK_GREY, (width//8, width//4, width//2, width//10))
+    nail = draw_ellipse(width*0.3, width*0.06, DARK_GREY)
+    nail = pygame.transform.rotate(nail, 35)
+    surf_cat.blit(nail, (width*0.57, width*0.11))
+    leg = draw_ellipse(width*0.25, width*0.04, DARK_GREY)
+    leg1 = pygame.transform.rotate(leg, -175)
+    leg2 = pygame. transform.rotate(leg, -160)
+    leg3 = pygame.transform.rotate(leg, -20)
+    leg4 = pygame.transform.rotate(leg, -25)
+    surf_cat.blit(leg1, (width*0, width*0.3))
+    surf_cat.blit(leg2, (width*0.05, width*0.31))
+    surf_cat.blit(leg3, (width*0.5, width*0.28))
+    surf_cat.blit(leg4, (width*0.45, width*0.3))
+    surf_fish = draw_fish(width//3)
+
+    surf_head = pygame.Surface((width*0.3, width*0.3))
+    surf_head.fill(RED)
+    pygame.draw.ellipse(surf_head, DARK_GREY, (0, 0, width*0.16, width*0.12))
+    pygame.draw.circle(surf_head, WHITE, (width*0.03, width*0.05), width*0.02)
+    pygame.draw.circle(surf_head, (0, 0, 1), (width*0.04, width*0.05), width*0.01)
+    pygame.draw.circle(surf_head, WHITE, (width*0.09, width*0.06), width*0.02)
+    pygame.draw.circle(surf_head, (0, 0, 1), (width*0.10, width*0.06), width*0.01)
+    surf_head.set_colorkey(RED)
+    pygame.draw.polygon(surf_head, WHITE, [[width*0.035, width*0.11], [width*0.04, width*0.11],
+                                              [width*0.0375, width*0.12]])
+    pygame.draw.polygon(surf_head, WHITE, [[width * 0.07, width * 0.12], [width * 0.08, width * 0.12],
+                                           [width * 0.075, width * 0.13]])
+    pygame.draw.polygon(surf_head, (0, 0, 1), [[width * 0.04, width * 0.09], [width * 0.06, width * 0.09],
+                                           [width * 0.05, width * 0.10]])
+
+    surf_cat.blit(surf_fish, (-width*0.135, width*0.05))
+    surf_cat.blit(surf_head, (width*0.1, width*0.15))
+    surf_cat.set_colorkey(BLACK)
+    pygame.draw.polygon(surf_cat, DARK_GREY, [[width * 0.15, width * 0.12], [width * 0.14, width * 0.18],
+                                               [width * 0.22, width * 0.18]])
+    pygame.draw.polygon(surf_cat, DARK_GREY, [[width * 0.22, width * 0.12], [width * 0.18, width * 0.18],
+                                              [width * 0.25, width * 0.19]])
+    screen.blit(surf_cat, coords)
+
+    return screen
 
 
 while 1:
@@ -147,10 +180,14 @@ while 1:
         if event.type == pygame.QUIT:
             exit()
 
-    jurt(400, (50, 400))
-    chukchi(400, (500, 500))
+    jurt(400, (50, 415))
+    jurt(100, (500, 100))
+    jurt(200, (250, 800))
+    chukchi(400, (500, 550))
     chukchi(200, (100, 100))
-    #cat(300, (100, 700))
+    chukchi(100, (500, 100))
+    cat(300, (100, 700))
+    cat(200, (500, 850))
     pygame.display.update()
 
     clock.tick(FPS)
