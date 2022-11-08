@@ -23,8 +23,17 @@ LIGHT_BROWN = (172, 157, 147)
 FPS = 60
 clock = pygame.time.Clock()
 
-screen.fill(WHITE)
-pygame.draw.rect(screen, GREY, (0, 0, WIDTH, HEIGHT//2))
+
+def draw_background(surface, color_sky, color_ground):
+    '''
+    Рисует фон изображения на экране.
+    color_sky - цвет неба
+    color_ground - цвет земли
+    surface - поверхность
+    :return: None
+    '''
+    surface.fill(color_ground)
+    pygame.draw.rect(surface, color_sky, (0, 0, WIDTH, HEIGHT // 2))
 
 
 def jurt(width, coords):
@@ -179,7 +188,7 @@ while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
-
+    draw_background(screen, GREY, WHITE)
     jurt(400, (50, 415))
     jurt(100, (500, 100))
     jurt(200, (250, 800))

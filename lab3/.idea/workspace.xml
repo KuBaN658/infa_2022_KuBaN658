@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ba32a7-d4d2-4162-9c50-49d513a5ccdb" name="Changes" comment="well done">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+    <list default="true" id="04ba32a7-d4d2-4162-9c50-49d513a5ccdb" name="Changes" comment="jurt is ready">
+      <change beforePath="$PROJECT_DIR$/.idea/lab3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lab3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Arctic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Arctic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draw_angry.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw_angry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/north.py" beforeDir="false" afterPath="$PROJECT_DIR$/north.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
