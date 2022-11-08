@@ -19,7 +19,7 @@ BEIGE = (227, 222, 219)
 BROWN = (145, 124, 111)
 DARK_BROWN = (108, 93, 83)
 LIGHT_BROWN = (172, 157, 147)
-
+TEMP_COLOR = (0, 0, 1)
 FPS = 60
 clock = pygame.time.Clock()
 
@@ -27,23 +27,26 @@ clock = pygame.time.Clock()
 def draw_background(surface, color_sky, color_ground):
     '''
     Рисует фон изображения на экране.
-    color_sky - цвет неба
-    color_ground - цвет земли
-    surface - поверхность
+    :param color_sky: цвет неба
+    :param color_ground: цвет земли
+    :param surface: поверхность
     :return: None
     '''
     surface.fill(color_ground)
     pygame.draw.rect(surface, color_sky, (0, 0, WIDTH, HEIGHT // 2))
 
 
-def jurt(width, coords):
-    height = width // 2
-    surf_jurt = pygame.Surface((width, height))
-    surf_jurt.fill((0, 0, 1))
+def igloo(width, height, coords, color):
+    '''
+    рисует иглу
+    :param width: Ширина иглу по нижнему краю
+    :param height: высота иглу
+    :param coords: координаты середины основания(кортеж(x, y))
+    :param color: цвет иглы
+    :return: None
+    '''
+    surf_jurt = draw_contour(width, height, color)
 
-    pygame.draw.circle(surf_jurt, GREY, (height, height), height)
-    pygame.draw.circle(surf_jurt, BLACK, (height, height), height, 2)
-    surf_jurt.set_colorkey((0, 0, 1))
 
     interval = width // 7
     #h_rect = height * 0.25
@@ -68,7 +71,16 @@ def jurt(width, coords):
 
     pygame.draw.line(surf_jurt, BLACK, (height, y), (height, 0))
 
-    return screen.blit(surf_jurt, coords)
+    screen.blit(surf_jurt, coords)
+
+
+def draw_contour(width, height, color):
+    surf_jurt = pygame.Surface((width, height))
+    surf_jurt.fill(TEMP_COLOR)
+    pygame.draw.circle(surf_jurt, color, (height, height), height)
+    pygame.draw.circle(surf_jurt, BLACK, (height, height), height, 2)
+    surf_jurt.set_colorkey(TEMP_COLOR)
+    return surf_jurt
 
 
 def draw_ellipse(width, height, color):
@@ -189,9 +201,9 @@ while 1:
         if event.type == pygame.QUIT:
             exit()
     draw_background(screen, GREY, WHITE)
-    jurt(400, (50, 415))
-    jurt(100, (500, 100))
-    jurt(200, (250, 800))
+    igloo(400, 200, (50, 415), GREY)
+    igloo(100, 50, (500, 100), GREY)
+    igloo(200, 100, (250, 800), GREY)
     chukchi(400, (500, 550))
     chukchi(200, (100, 100))
     chukchi(100, (500, 100))
