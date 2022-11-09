@@ -46,35 +46,19 @@ def igloo(width, height, coords, color):
     :return: None
     '''
     surf_jurt = draw_contour(width, height, color)
-
-
-    interval = width // 7
-    #h_rect = height * 0.25
-    x = 0
-    y = width//2 - 1
-    h = 0
-    w = width // 5
-    pygame.draw.line(surf_jurt, BLACK, (x, y), (width - x, y))
-    for i in range(3):
-        y = y - interval
-        h += interval
-        x = height - (height ** 2 - h ** 2) ** 0.5 + 1
-        pygame.draw.line(surf_jurt, BLACK, (x, y), (width - x, y))
-        x1 = x + w//2
-        y1 = y
-        x2 = x + w//2
-        y2 = y + interval
-        while x1 < width - x:
-            pygame.draw.line(surf_jurt, BLACK, (x1, y1), (x2, y2))
-            x1 += w
-            x2 += w
-
-    pygame.draw.line(surf_jurt, BLACK, (height, y), (height, 0))
+    draw_snow_brick(surf_jurt, width, height, width//9, width//6)
 
     screen.blit(surf_jurt, coords)
 
 
 def draw_contour(width, height, color):
+    """
+    рисует очертание иглу
+    :param width: ширина иглу
+    :param height: высота иглу
+    :param color: цвет иглу
+    :return: возвращает поверхность с нарисованным очертанием иглу
+    """
     surf_jurt = pygame.Surface((width, height))
     surf_jurt.fill(TEMP_COLOR)
     pygame.draw.circle(surf_jurt, color, (height, height), height)
@@ -83,14 +67,58 @@ def draw_contour(width, height, color):
     return surf_jurt
 
 
+def draw_snow_brick(surf_jurt, width, height, height_brick, weight_brick):
+    """
+    Рисует кирпичики на поверхности иглу
+    :param surf_jurt: поверхность с нарисованным очертанием
+    :param width: ширина иглу
+    :param height: высота иглу
+    :param height_brick: высота кирпичиков
+    :param weight_brick: ширина кирпичиков
+    :return: None
+    """
+    x = 0
+    y = width // 2 - 1
+    h = 0 # расстояние от основания иглы до рисуемой горизонтали
+    pygame.draw.line(surf_jurt, BLACK, (x, y), (width - x, y)) #рисуем горизонталь
+    for i in range(height//height_brick):
+        y = y - height_brick
+        h += height_brick
+        x = height - (height ** 2 - h ** 2) ** 0.5 + 1
+        pygame.draw.line(surf_jurt, BLACK, (x, y), (width - x, y))
+        x1 = x + weight_brick // 2
+        y1 = y
+        x2 = x + weight_brick // 2
+        y2 = y + height_brick
+        while x1 < width - x:
+            pygame.draw.line(surf_jurt, BLACK, (x1, y1), (x2, y2))
+            x1 += weight_brick
+            x2 += weight_brick
+    pygame.draw.line(surf_jurt, BLACK, (height, y), (height, 0))
+
+
 def draw_ellipse(width, height, color):
+    """
+    Рисует овал
+    :param width: ширина овала
+    :param height: высота овала
+    :param color: цвет овала
+    :return: возвращает поверхность с нарисованным овалом
+    """
     surf_ellipse = pygame.Surface((width, height))
     pygame.draw.ellipse(surf_ellipse, color, (0, 0, width, height))
     surf_ellipse.set_colorkey(BLACK)
     return surf_ellipse
 
 
-def chukchi(height, coords):
+def chukchi(height, width, coords):
+    """
+    Рисует чукчу
+    :param height: высота чукчи
+    :param width: ширина чукчи
+    :param coords: координаты левого верхнего угла поверхности чукчи
+    :return: None
+    """
     width = height//1.5
     surf_chukchi = pygame.Surface((width, height))
     pygame.draw.ellipse(surf_chukchi, BEIGE, (width*0.22, 0, width*0.5, width*0.4))
@@ -204,9 +232,9 @@ while 1:
     igloo(400, 200, (50, 415), GREY)
     igloo(100, 50, (500, 100), GREY)
     igloo(200, 100, (250, 800), GREY)
-    chukchi(400, (500, 550))
-    chukchi(200, (100, 100))
-    chukchi(100, (500, 100))
+    chukchi(400, 150, (500, 550))
+    chukchi(200, 100, (100, 100))
+    chukchi(100, 30, (500, 100))
     cat(300, (100, 700))
     cat(200, (500, 850))
     pygame.display.update()
