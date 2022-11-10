@@ -111,7 +111,7 @@ def draw_ellipse(width, height, color):
     return surf_ellipse
 
 
-def chukchi(height, width, coords):
+def chukchi(width, height, coords):
     """
     Рисует чукчу
     :param height: высота чукчи
@@ -119,14 +119,12 @@ def chukchi(height, width, coords):
     :param coords: координаты левого верхнего угла поверхности чукчи
     :return: None
     """
-    width = height//1.5
     surf_chukchi = pygame.Surface((width, height))
-    pygame.draw.ellipse(surf_chukchi, BEIGE, (width*0.22, 0, width*0.5, width*0.4))
-    torso = pygame.Surface((width//1.3, width*0.8))
-    pygame.draw.ellipse(torso, BROWN, (0, 0, width//1.3, width*2))
-    torso.set_colorkey(BLACK)
+    pygame.draw.ellipse(surf_chukchi, BEIGE, (width*0.215, 0, width*0.5, height*0.3))
+    draw_legs(surf_chukchi, width, height)
+    draw_torso(surf_chukchi, width, height)
 
-    surf_chukchi.blit(torso, (width*0.095,  width*0.18))
+
     pygame.draw.ellipse(surf_chukchi, (172, 157, 147),
                         (width * 0.27, width * 0.06, width * 0.4, width * 0.3))
     pygame.draw.ellipse(surf_chukchi, BEIGE, (width*0.32, width*0.1, width*0.3, width*0.2))
@@ -134,22 +132,51 @@ def chukchi(height, width, coords):
     surf_chukchi.blit(hand, (0, width//2.5))
     hand_left = pygame.transform.rotate(hand, 150)
     surf_chukchi.blit(hand_left, (width//1.7, width//2.9))
-    leg = draw_ellipse(width//6, width//3, BROWN)
-    surf_chukchi.blit(leg, (width//4, width*0.825))
-    surf_chukchi.blit(leg, (width//1.8, width*0.825))
-    foot = draw_ellipse(width//4, width//8, BROWN)
-    surf_chukchi.blit(foot, (width//6, height*0.7))
-    surf_chukchi.blit(foot, (width//1.8, height*0.7))
-    pygame.draw.line(surf_chukchi, (0, 0, 1), (width*0.03, 0), (width*0.08, height*0.7))
+
+
+    pygame.draw.line(surf_chukchi, (0, 0, 1), (width*0.03, 0), (width*0.08, height))
     pygame.draw.line(surf_chukchi, (0, 0, 1), (width*0.37, width*0.15), (width*0.43, width*0.17))
     pygame.draw.line(surf_chukchi, (0, 0, 1), (width*0.5, width*0.17), (width*0.56, width*0.15))
     pi = 3.14
     pygame.draw.arc(surf_chukchi, (0, 0, 1), (width*0.42, width*0.22, width*0.1, width*0.05), 0, pi)
-    pygame.draw.rect(surf_chukchi, DARK_BROWN, (width*0.1, width*0.88, width*0.76, width*0.1))
-    pygame.draw.rect(surf_chukchi, DARK_BROWN, (width*0.38, width*0.35, width*0.2, width*0.6))
+
+
 
     surf_chukchi.set_colorkey(BLACK)
     return screen.blit(surf_chukchi, coords)
+
+
+def draw_torso(surface, width, height):
+    """
+
+    :param surface:
+    :param width:
+    :param height:
+    :return:
+    """
+    torso = pygame.Surface((width // 1.3, height*0.7))
+    pygame.draw.ellipse(torso, BROWN, (0, 0, width // 1.3, height * 1.4))
+    pygame.draw.rect(torso, DARK_BROWN, (0, height * 0.65, width * 0.8, height * 0.05))
+    pygame.draw.rect(torso, DARK_BROWN, (width * 0.28, height * 0.1, width * 0.2, height * 0.7))
+    torso.set_colorkey(BLACK)
+    surface.blit(torso, (width * 0.095, width * 0.18))
+
+
+def draw_legs(surface, width, height):
+    """
+
+    :param surface:
+    :param width:
+    :param height:
+    :return:
+    """
+    leg = draw_ellipse(width // 6, height // 3.5, BROWN)
+    surface.blit(leg, (width // 4, height * 0.65))
+    surface.blit(leg, (width // 1.8, height * 0.65))
+    foot = draw_ellipse(width // 4, height // 14, BROWN)
+    surface.blit(foot, (width // 6, height * 0.9))
+    surface.blit(foot, (width // 1.8, height * 0.9))
+
 
 
 def draw_fish(width):
@@ -232,11 +259,11 @@ while 1:
     igloo(400, 200, (50, 415), GREY)
     igloo(100, 50, (500, 100), GREY)
     igloo(200, 100, (250, 800), GREY)
-    chukchi(400, 150, (500, 550))
-    chukchi(200, 100, (100, 100))
-    chukchi(100, 30, (500, 100))
-    cat(300, (100, 700))
-    cat(200, (500, 850))
+    chukchi(300, 400, (500, 550))
+    chukchi(150, 200, (100, 100))
+    chukchi(80, 100, (500, 100))
+    # cat(300, (100, 700))
+    # cat(200, (500, 850))
     pygame.display.update()
 
     clock.tick(FPS)
