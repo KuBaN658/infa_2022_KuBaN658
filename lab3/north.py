@@ -27,26 +27,26 @@ clock = pygame.time.Clock()
 
 
 def draw_background(surface, color_sky, color_ground):
-    '''
+    """
     Рисует фон изображения на экране.
     :param color_sky: цвет неба
     :param color_ground: цвет земли
     :param surface: поверхность
     :return: None
-    '''
+    """
     surface.fill(color_ground)
     pygame.draw.rect(surface, color_sky, (0, 0, WIDTH, HEIGHT // 2))
 
 
 def igloo(width, height, coords, color):
-    '''
+    """
     рисует иглу
     :param width: Ширина иглу по нижнему краю
     :param height: высота иглу
     :param coords: координаты середины основания(кортеж(x, y))
     :param color: цвет иглы
     :return: None
-    '''
+    """
     surf_jurt = draw_contour(width, height, color)
     draw_snow_brick(surf_jurt, width, height, width//9, width//6)
 
@@ -81,8 +81,8 @@ def draw_snow_brick(surf_jurt, width, height, height_brick, weight_brick):
     """
     x = 0
     y = width // 2 - 1
-    h = 0 # расстояние от основания иглы до рисуемой горизонтали
-    pygame.draw.line(surf_jurt, BLACK, (x, y), (width - x, y)) #рисуем горизонталь
+    h = 0  # расстояние от основания иглы до рисуемой горизонтали
+    pygame.draw.line(surf_jurt, BLACK, (x, y), (width - x, y))  # рисуем горизонталь
     for i in range(height//height_brick):
         y = y - height_brick
         h += height_brick
@@ -123,12 +123,12 @@ def chukchi(width, height, coords):
     """
     surf_chukchi = pygame.Surface((width, height))
     surf_chukchi.fill(TEMP_COLOR)
-    pygame.draw.ellipse(surf_chukchi, BEIGE, (width*0.215, 0, width*0.5, height*0.3)) #задний фон головы
+    pygame.draw.ellipse(surf_chukchi, BEIGE, (width*0.215, 0, width*0.5, height*0.3))  # задний фон головы
     draw_legs(surf_chukchi, width, height)
     draw_hands(surf_chukchi, width, height)
     draw_torso(surf_chukchi, width, height)
     draw_head(surf_chukchi, width, height)
-    pygame.draw.line(surf_chukchi, BLACK, (width*0.03, 0), (width*0.08, height)) #Рисуем посох
+    pygame.draw.line(surf_chukchi, BLACK, (width*0.03, 0), (width*0.08, height))  # Рисуем посох
 
     surf_chukchi.set_colorkey(TEMP_COLOR)
     screen.blit(surf_chukchi, coords)
@@ -196,9 +196,6 @@ def draw_hands(surface, width, height):
     surface.blit(hand, (0, height // 4))
     hand_left = pygame.transform.rotate(hand, 150)
     surface.blit(hand_left, (width // 1.8, height // 4.5))
-
-
-
 
 
 def cat(width, coords):
@@ -271,7 +268,7 @@ def draw_fin(surface, width, height):
     pygame.draw.polygon(surf_fin, RED, [[0, height*0.5], [width // 2, height // 6],
                                         [width*0.3, 0], [width*0.2, height]])
     pygame.draw.polygon(surf_fin, BLACK, [[0, height*0.5], [width // 2, height // 6],
-                                              [width*0.3, 0], [width*0.2, height]], 1)
+                                          [width*0.3, 0], [width*0.2, height]], 1)
     surf_fin.set_colorkey(TEMP_COLOR)
     surface.blit(surf_fin, (width * 0.3, height // 2))
 
@@ -294,10 +291,8 @@ def draw_torso_fish(surface, width, height):
     torso.blit(surf_torso, (0, width * 0.3))
     torso.blit(surf_torso_up, (0, -width * 0.7))
     torso = pygame.transform.rotate(torso, -40)
-    pygame.draw.polygon(torso, BLUE, [[width, width * 0.7], [width * 1.2,
-                                                             width * 0.65], [width * 1, width * 0.9]])
-    pygame.draw.polygon(torso, BLACK, [[width, width * 0.7], [width * 1.2,
-                                                                  width * 0.65], [width * 1, width * 0.9]], 1)
+    pygame.draw.polygon(torso, BLUE, [[width, width * 0.7], [width * 1.2, width * 0.65], [width * 1, width * 0.9]])
+    pygame.draw.polygon(torso, BLACK, [[width, width * 0.7], [width * 1.2, width * 0.65], [width * 1, width * 0.9]], 1)
     torso.set_colorkey(TEMP_COLOR)
 
     surface.blit(torso, (-width * 0.12, height * 0.04))
@@ -324,11 +319,11 @@ def draw_cat_head(surface, width, height):
     pygame.draw.polygon(surf_head, WHITE, [[width * 0.07, width * 0.12], [width * 0.08, width * 0.12],
                                            [width * 0.075, width * 0.13]])
     pygame.draw.polygon(surf_head, BLACK, [[width * 0.04, width * 0.09], [width * 0.06, width * 0.09],
-                                               [width * 0.05, width * 0.10]])
+                                           [width * 0.05, width * 0.10]])
     pygame.draw.polygon(surf_head, DARK_GREY, [[width * 0.09, width * 0], [width * 0.12, width * 0.02],
-                                             [width * 0.08, width * 0.02]])
+                                               [width * 0.08, width * 0.02]])
     pygame.draw.polygon(surf_head, DARK_GREY, [[width * 0.02, width * 0], [width * 0.06, width * 0.02],
-                                             [width * 0.03, width * 0.03]])
+                                               [width * 0.03, width * 0.03]])
     surf_head = pygame.transform.rotate(surf_head, -20)
     surface.blit(surf_head, (width * 0.13, height * 0.3))
 
@@ -338,7 +333,6 @@ def main():
     igloo(400, 200, (50, 415), GREY)
     chukchi(200, 300, (500, 500))
     cat(300, (100, 700))
-
 
 
 while 1:
